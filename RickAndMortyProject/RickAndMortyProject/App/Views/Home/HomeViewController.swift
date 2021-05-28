@@ -9,8 +9,19 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    // MARK: - Outlets
+    
+    // MARK: - Properties
+    
+    var viewModel: HomeViewModel!
+
+    // MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bind(to: viewModel)
+        
         view.backgroundColor = .blue
         Repository().getCharacter { result in
             switch result {
@@ -26,4 +37,15 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Action
+
+    // MARK: - Private Functions
+    
+    fileprivate func bind(to viewModel: HomeViewModel) {
+        
+    }
+    
+    
+    
 }
