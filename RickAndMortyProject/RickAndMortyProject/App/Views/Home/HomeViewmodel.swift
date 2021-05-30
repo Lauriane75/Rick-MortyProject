@@ -21,7 +21,9 @@ final class HomeViewModel {
         
     private var characterItems: [CharacterItem] = [] {
         didSet {
-            
+            DispatchQueue.main.async {
+                self.labelText?((self.characterItems.first?.name)!)
+            }
         }
     }
     // MARK: - Initializer
@@ -45,7 +47,6 @@ final class HomeViewModel {
                 characterItem.results.enumerated().forEach { _, item in
                     self.characterItems.append(CharacterItem(results: item!))
                 }
-                print("characterItems = \(self.characterItems[1].name ?? "name")")
             case .failure(error: let error):
                 print("error = \(error.localizedDescription)")
             }
@@ -55,6 +56,7 @@ final class HomeViewModel {
     }
     
     func viewWillAppear() {
+        
    
     }
     func didPressButton() {
