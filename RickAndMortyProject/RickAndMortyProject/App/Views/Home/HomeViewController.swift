@@ -13,8 +13,10 @@ class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
+    var visibleCharacter: [CharacterItem] = []
+    
     var viewModel: HomeViewModel!
-
+    
     // MARK: - View life cycle
     
     override func viewDidLoad() {
@@ -26,26 +28,26 @@ class HomeViewController: UIViewController {
         Repository().getCharacter { result in
             switch result {
             case .success(let characters):
-                guard let firstPageResults = characters.first?.results.first else { return }
-                                                
-                let characterItem: [CharacterItem] = characters.map { _ in return CharacterItem(results: firstPageResults!) }
+                guard let allResults = characters.first?.results else { return }
                 
-                print("name = \(String(describing: characterItem[0].name))")
+                allResults.enumerated().forEach { index, item in
+                    self.visibleCharacter.append(CharacterItem(results: item!))
+                }
+                print("visibleCharacter \(self.visibleCharacter)")
                 
             case .failure(let error):
-            print("error = \(error.localizedDescription)")
+                print("error = \(error.localizedDescription)")
             }
         }
     }
     
+    
     // MARK: - Action
-
+    
     // MARK: - Private Functions
     
     fileprivate func bind(to viewModel: HomeViewModel) {
         
     }
-    
-    
     
 }
