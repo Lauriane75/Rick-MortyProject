@@ -9,9 +9,20 @@ import UIKit
 
 class Screens {
     
+    // MARK: - Properties
+
+    private let context: Context
+    
+    // MARK: - Initializer
+
+    init(context: Context) {
+        self.context = context
+    }
+    
     func createHomeViewController(delegate: HomeViewModelDelegate?) -> UIViewController {
         let viewController = HomeViewController()
-        let viewModel = HomeViewModel(delegate: delegate)
+        let repository = Repository(context: context)
+        let viewModel = HomeViewModel(delegate: delegate, repository: repository)
         viewController.viewModel = viewModel
         return viewController
     }

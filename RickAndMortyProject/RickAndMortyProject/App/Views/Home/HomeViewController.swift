@@ -10,11 +10,9 @@ import UIKit
 class HomeViewController: UIViewController {
     
     // MARK: - Outlets
-    
+        
     // MARK: - Properties
-    
-    var visibleCharacter: [CharacterItem] = []
-    
+        
     var viewModel: HomeViewModel!
     
     // MARK: - View life cycle
@@ -24,23 +22,16 @@ class HomeViewController: UIViewController {
         
         bind(to: viewModel)
         
+        viewModel.viewDidLoad()
+        
         view.backgroundColor = .blue
-        Repository().getCharacter { result in
-            switch result {
-            case .success(let characters):
-                guard let allResults = characters.first?.results else { return }
-                
-                allResults.enumerated().forEach { index, item in
-                    self.visibleCharacter.append(CharacterItem(results: item!))
-                }
-                print("visibleCharacter \(self.visibleCharacter)")
-                
-            case .failure(let error):
-                print("error = \(error.localizedDescription)")
-            }
-        }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.viewWillAppear()
+    }
     
     // MARK: - Action
     

@@ -154,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				5B2970CF266168C900FD7296 /* Navigation */,
-				5BA86E882661448B00489B3E /* Database */,
+				5BA86E882661448B00489B3E /* Database-Coredata */,
 				5BA86E872661447B00489B3E /* Network */,
 				5BA86E812661441E00489B3E /* Repository */,
 				5B2B20062660F252008A8886 /* Model */,
@@ -181,12 +181,12 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		5BA86E882661448B00489B3E /* Database */ = {
+		5BA86E882661448B00489B3E /* Database-Coredata */ = {
 			isa = PBXGroup;
 			children = (
 				5BDB5B4E266003A200A65D3A /* RickAndMortyProject.xcdatamodeld */,
 			);
-			path = Database;
+			path = "Database-Coredata";
 			sourceTree = "<group>";
 		};
 		5BA86E89266144A600489B3E /* Home */ = {

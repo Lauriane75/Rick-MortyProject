@@ -9,7 +9,7 @@ import Foundation
 
 enum CompletionResult<T> {
     case success(value: T)
-    case error(error: Error)
+    case failure(error: Error)
 }
 
 enum NetworkError: Error {
@@ -53,12 +53,12 @@ final class HTTPClient: HTTPClientType {
         request.httpMethod = requestType.rawValue
         engine.send(request: request, cancelledBy: token) { (data, _, error) in
             if let error = error {
-                completion(.error(error: error))
+                completion(.failure(error: error))
             } else if let data = data {
                 guard let weather = try? self.jsonDecoder.decode(T.self, from: data) else { return }
                 completion(.success(value: weather))
             } else {
-                completion(.error(error: NetworkError.unknown))
+                completion(.failure(error: NetworkError.unknown))
             }
         }
     }

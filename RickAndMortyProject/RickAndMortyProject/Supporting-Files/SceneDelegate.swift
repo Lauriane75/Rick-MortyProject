@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var context: Context!
     
     var mainCoordinator: MainCoordinator?
 
@@ -17,7 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let winScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: winScene)
         
-        let screen = Screens()
+        let client = HTTPClient()
+        context = Context(client: client)
+        let screen = Screens(context: context)
         
         mainCoordinator = MainCoordinator(window: window, screens: screen)
         

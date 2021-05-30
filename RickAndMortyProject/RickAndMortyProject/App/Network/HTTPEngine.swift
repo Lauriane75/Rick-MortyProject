@@ -27,12 +27,12 @@ final class HTTPEngine {
 
     func send(request: URLRequest,
               cancelledBy token: Token,
-              callback: @escaping HTTPCompletionHander) {
+              completion: @escaping HTTPCompletionHander) {
         let task = session.dataTask(with: request) { (data, urlResponse, _) in
             if urlResponse != nil, let httpURLResponse = urlResponse as? HTTPURLResponse {
-                callback(data, httpURLResponse, nil)
+                completion(data, httpURLResponse, nil)
             } else {
-                callback(data, nil, URLSessionEngineError.invalidURLResponseType)
+                completion(data, nil, URLSessionEngineError.invalidURLResponseType)
             }
         }
         task.resume()
