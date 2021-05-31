@@ -14,7 +14,7 @@ protocol HomeViewModelDelegate: AnyObject {
 final class HomeViewModel {
     
     // MARK: - Properties
-    
+        
     private let repository: RepositoryType
     
     private weak var delegate: HomeViewModelDelegate?
@@ -22,7 +22,8 @@ final class HomeViewModel {
     private var characterItems: [CharacterItem] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.labelText?((self.characterItems.first?.name)!)
+                guard let firstImage = self.characterItems.first?.image else { return }
+                self.labelText?(firstImage)
             }
         }
     }

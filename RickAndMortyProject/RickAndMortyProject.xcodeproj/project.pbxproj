@@ -20,6 +20,8 @@
 		5BA86E8B2661462100489B3E /* HomeViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA86E8A2661462100489B3E /* HomeViewmodel.swift */; };
 		5BBD254A2664351900162B99 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD25492664351900162B99 /* Constant.swift */; };
 		5BBD254C2664356100162B99 /* CustomElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD254B2664356100162B99 /* CustomElement.swift */; };
+		5BBD254F26643C9C00162B99 /* HomeCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD254E26643C9C00162B99 /* HomeCollectionViewDataSource.swift */; };
+		5BBD255126643D2400162B99 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD255026643D2400162B99 /* HomeCollectionViewCell.swift */; };
 		5BDB5B48266003A200A65D3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB5B47266003A200A65D3A /* SceneDelegate.swift */; };
 		5BDB5B4A266003A200A65D3A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB5B49266003A200A65D3A /* HomeViewController.swift */; };
 		5BDB5B50266003A200A65D3A /* RickAndMortyProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB5B4E266003A200A65D3A /* RickAndMortyProject.xcdatamodeld */; };
@@ -68,6 +70,8 @@
 		5BA86E8A2661462100489B3E /* HomeViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewmodel.swift; sourceTree = "<group>"; };
 		5BBD25492664351900162B99 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		5BBD254B2664356100162B99 /* CustomElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomElement.swift; sourceTree = "<group>"; };
+		5BBD254E26643C9C00162B99 /* HomeCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		5BBD255026643D2400162B99 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BDB5B42266003A200A65D3A /* RickAndMortyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BDB5B47266003A200A65D3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5BDB5B49266003A200A65D3A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -198,10 +202,20 @@
 		5BA86E89266144A600489B3E /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5BDB5B49266003A200A65D3A /* HomeViewController.swift */,
 				5BA86E8A2661462100489B3E /* HomeViewmodel.swift */,
+				5BDB5B49266003A200A65D3A /* HomeViewController.swift */,
+				5BBD254D26643B7800162B99 /* Cell */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		5BBD254D26643B7800162B99 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5BBD254E26643C9C00162B99 /* HomeCollectionViewDataSource.swift */,
+				5BBD255026643D2400162B99 /* HomeCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5BDB5B39266003A200A65D3A = {
@@ -482,12 +496,14 @@
 				5BBD254A2664351900162B99 /* Constant.swift in Sources */,
 				5BBD254C2664356100162B99 /* CustomElement.swift in Sources */,
 				5B2970DD2661737D00FD7296 /* HTTPClient.swift in Sources */,
+				5BBD255126643D2400162B99 /* HomeCollectionViewCell.swift in Sources */,
 				5BDB5B4A266003A200A65D3A /* HomeViewController.swift in Sources */,
 				5B2970DB2661736900FD7296 /* Token.swift in Sources */,
 				5BA86E802661434A00489B3E /* Character.swift in Sources */,
 				5B2970D1266168D800FD7296 /* Screens.swift in Sources */,
 				5B2970DF2661739500FD7296 /* HTTPEngine.swift in Sources */,
 				5B2970D7266172BE00FD7296 /* Context.swift in Sources */,
+				5BBD254F26643C9C00162B99 /* HomeCollectionViewDataSource.swift in Sources */,
 				5BDB5B48266003A200A65D3A /* SceneDelegate.swift in Sources */,
 				5BA86E832661442C00489B3E /* Repository.swift in Sources */,
 				5B2970D526616C4A00FD7296 /* HomeCoordinator.swift in Sources */,
