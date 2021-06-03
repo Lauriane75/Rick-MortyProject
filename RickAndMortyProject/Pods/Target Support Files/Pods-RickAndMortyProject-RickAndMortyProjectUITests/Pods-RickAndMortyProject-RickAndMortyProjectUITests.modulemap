@@ -1,0 +1,6 @@
+framework module Pods_RickAndMortyProject_RickAndMortyProjectUITests {
+  umbrella header "Pods-RickAndMortyProject-RickAndMortyProjectUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
