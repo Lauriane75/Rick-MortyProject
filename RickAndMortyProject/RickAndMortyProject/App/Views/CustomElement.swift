@@ -87,6 +87,7 @@ class CustomCollectionView: UICollectionView {
         self.init()
         backgroundColor = uiBackGroundColor
         translatesAutoresizingMaskIntoConstraints = false
+        isUserInteractionEnabled = true
     }
 }
 

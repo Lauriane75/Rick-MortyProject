@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+class HomeCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: Private properties
         
@@ -33,6 +33,10 @@ class HomeCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             as! HomeCollectionViewCell
         cell.configure(with: visibleCharacter)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected Cell: \(indexPath.row)")
     }
 }
 

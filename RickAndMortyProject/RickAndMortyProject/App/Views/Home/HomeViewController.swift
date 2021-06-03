@@ -47,6 +47,7 @@ class HomeViewController: UIViewController {
         collectionView.frame = view.bounds
         collectionView.backgroundColor = .white
         collectionView.dataSource = homeCollectionViewDataSource
+        collectionView.delegate = homeCollectionViewDataSource
         
         setElementaddSubview()
         
