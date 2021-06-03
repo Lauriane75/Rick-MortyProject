@@ -22,7 +22,7 @@ class CustomLabel: UILabel {
         textColor = color
         font = textFont
         numberOfLines = 0
-        textAlignment = .left
+        textAlignment = .center
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
