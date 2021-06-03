@@ -22,10 +22,7 @@ final class HomeViewModel {
     private var characterItems: [CharacterItem] = [] {
         didSet {
             DispatchQueue.main.async {
-                guard let firstImage = self.characterItems.first?.image else { return }
-                self.labelText?(firstImage)
-                print("image = \(firstImage)")
-
+                self.visiblecharacterItem?(self.characterItems)
             }
         }
     }
@@ -40,15 +37,17 @@ final class HomeViewModel {
     
     var labelText: ((String) -> Void)?
     
+    var visiblecharacterItem: (([CharacterItem]) -> Void)?
+    
     // MARK: - Input
     
     func viewDidLoad() {
         
         repository.getCharacterList { result in
             switch result {
-            case .success(value: let characterItem):
-                characterItem.results.enumerated().forEach { _, item in
-                    self.characterItems.append(CharacterItem(results: item!))
+            case .success(value: let characterList):
+                self.characterItems = characterList.results.map { result in
+                    CharacterItem(results: result!)
                 }
             case .failure(error: let error):
                 print("error = \(error.localizedDescription)")
