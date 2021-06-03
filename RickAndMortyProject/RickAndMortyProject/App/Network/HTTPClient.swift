@@ -18,13 +18,13 @@ enum NetworkError: Error {
 
 protocol HTTPClientType {
     func request<T>(type: T.Type,
-                    requestType: RequestType,
+                    endPointType: EndPointType,
                     url: URL,
                     cancelledBy token: Token,
                     completion: @escaping (CompletionResult<T>) -> Void) where T: Decodable
 }
 
-enum RequestType: String {
+enum EndPointType: String {
     case GET
     case POST
 }
@@ -45,18 +45,18 @@ final class HTTPClient: HTTPClientType {
     }
 
     func request<T>(type: T.Type,
-                    requestType: RequestType,
+                    endPointType: EndPointType,
                     url: URL,
                     cancelledBy token: Token,
                     completion: @escaping (CompletionResult<T>) -> Void) where T: Decodable {
         var request = URLRequest(url: url)
-        request.httpMethod = requestType.rawValue
+        request.httpMethod = endPointType.rawValue
         engine.send(request: request, cancelledBy: token) { (data, _, error) in
             if let error = error {
                 completion(.failure(error: error))
             } else if let data = data {
-                guard let weather = try? self.jsonDecoder.decode(T.self, from: data) else { return }
-                completion(.success(value: weather))
+                guard let result = try? self.jsonDecoder.decode(T.self, from: data) else { return }
+                completion(.success(value: result))
             } else {
                 completion(.failure(error: NetworkError.unknown))
             }

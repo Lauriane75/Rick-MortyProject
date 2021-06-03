@@ -51,7 +51,7 @@ class Repository: RepositoryType {
         
         guard let url = URL(string: urlString) else { return }
         
-        context.client.request(type: Character.self, requestType: .GET, url: url, cancelledBy: token) { character in
+        context.client.request(type: Character.self, endPointType: .GET, url: url, cancelledBy: token) { character in
             switch character {
             case .success(value: let characterItem):
                 let result: Character = characterItem

@@ -24,6 +24,8 @@ final class HomeViewModel {
             DispatchQueue.main.async {
                 guard let firstImage = self.characterItems.first?.image else { return }
                 self.labelText?(firstImage)
+                print("image = \(firstImage)")
+
             }
         }
     }
@@ -42,7 +44,7 @@ final class HomeViewModel {
     
     func viewDidLoad() {
         
-        repository.getCharacterList { [self] result in
+        repository.getCharacterList { result in
             switch result {
             case .success(value: let characterItem):
                 characterItem.results.enumerated().forEach { _, item in
