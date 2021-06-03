@@ -27,5 +27,12 @@ class Screens {
         return viewController
     }
     
+    func createDetailViewController(delegate: DetailViewModelDelegate?, characterItem: CharacterItem) -> UIViewController {
+        let viewController = DetailViewController()
+        let viewModel = DetailViewModel(delegate: delegate, characterItem: characterItem)
+        viewController.viewModel = viewModel
+        return viewController
+    }
+    
 
 }

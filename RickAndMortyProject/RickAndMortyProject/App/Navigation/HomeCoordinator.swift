@@ -41,7 +41,8 @@ extension HomeViewCoordinator: CoordinatorProtocol {
     }
     
     private func createDetailView(characterItem: CharacterItem) {
-        print("item = \(String(describing: characterItem.id))")
+        let viewController = screens.createDetailViewController(delegate: self, characterItem: characterItem)
+        navigationController.pushViewController(viewController, animated: false)
     }
 }
 
@@ -51,4 +52,7 @@ extension HomeViewCoordinator: HomeViewModelDelegate {
     }
 }
 
+extension HomeViewCoordinator: DetailViewModelDelegate {
+   
+}
 
