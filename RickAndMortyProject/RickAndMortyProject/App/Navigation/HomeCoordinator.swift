@@ -40,14 +40,14 @@ extension HomeViewCoordinator: CoordinatorProtocol {
         navigationController.pushViewController(viewController, animated: false)
     }
     
-    private func createDetailView() {
-   
+    private func createDetailView(characterItem: CharacterItem) {
+        print("item = \(String(describing: characterItem.id))")
     }
 }
 
 extension HomeViewCoordinator: HomeViewModelDelegate {
-    func showDetailView() {
-        createDetailView()
+    func didSelectCharacter(item: CharacterItem) {
+        createDetailView(characterItem: item)
     }
 }
 

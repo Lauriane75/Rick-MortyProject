@@ -13,6 +13,8 @@ class HomeCollectionViewDataSource: NSObject, UICollectionViewDataSource, UIColl
         
     private var items: [CharacterItem] = []
     
+    var selectedCharacter: ((Int) -> Void)?
+    
     // MARK: Public function
     
     func update(with items: [CharacterItem]) {
@@ -36,7 +38,8 @@ class HomeCollectionViewDataSource: NSObject, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected Cell: \(indexPath.row)")
+        guard indexPath.row < items.count else { return }
+        selectedCharacter?(indexPath.row)
     }
 }
 

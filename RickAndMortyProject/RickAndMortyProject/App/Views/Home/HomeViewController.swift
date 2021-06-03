@@ -58,6 +58,8 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         viewModel.viewWillAppear()
+        
+        bind(to: homeCollectionViewDataSource)
     }
     
     // MARK: - Action
@@ -70,6 +72,10 @@ class HomeViewController: UIViewController {
             self.homeCollectionViewDataSource.update(with: characterItem)
             self.collectionView.reloadData()
         }
+    }
+    
+    fileprivate func bind(to source: HomeCollectionViewDataSource) {
+        source.selectedCharacter = viewModel.didSelectCharacterInList
     }
     
     fileprivate func setElementaddSubview() {

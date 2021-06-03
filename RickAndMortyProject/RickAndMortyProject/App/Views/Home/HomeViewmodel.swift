@@ -8,7 +8,7 @@
 import Foundation
 
 protocol HomeViewModelDelegate: AnyObject {
-    func showDetailView()
+    func didSelectCharacter(item: CharacterItem)
 }
 
 final class HomeViewModel {
@@ -59,8 +59,10 @@ final class HomeViewModel {
    
     }
     
-    func didPressButton() {
-        delegate?.showDetailView()
+    func didSelectCharacterInList(at index: Int) {
+        guard !self.characterItems.isEmpty, index < self.characterItems.count else { return }
+        let item = self.characterItems[index]
+        self.delegate?.didSelectCharacter(item: item)
     }
     
 }
