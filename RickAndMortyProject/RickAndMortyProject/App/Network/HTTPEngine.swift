@@ -19,7 +19,7 @@ final class HTTPEngine {
 
     private let session: URLSession
 
-    // MARK: - Inputs
+    // MARK: - Initializer
 
     init(configuration: URLSessionConfiguration = .default) {
         self.session = URLSession(configuration: configuration)

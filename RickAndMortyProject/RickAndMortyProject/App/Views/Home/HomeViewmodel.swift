@@ -8,13 +8,13 @@
 import Foundation
 
 protocol HomeViewModelDelegate: AnyObject {
-    func showDetailView()
+    func didSelectCharacter(item: CharacterItem)
 }
 
 final class HomeViewModel {
     
     // MARK: - Properties
-    
+        
     private let repository: RepositoryType
     
     private weak var delegate: HomeViewModelDelegate?
@@ -22,7 +22,7 @@ final class HomeViewModel {
     private var characterItems: [CharacterItem] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.labelText?((self.characterItems.first?.name)!)
+                self.visiblecharacterItem?(self.characterItems)
             }
         }
     }
@@ -34,18 +34,18 @@ final class HomeViewModel {
     }
     
     // MARK: - Output
-    
-    var labelText: ((String) -> Void)?
+        
+    var visiblecharacterItem: (([CharacterItem]) -> Void)?
     
     // MARK: - Input
     
     func viewDidLoad() {
         
-        repository.getCharacterList { [self] result in
+        repository.getCharacterList { result in
             switch result {
-            case .success(value: let characterItem):
-                characterItem.results.enumerated().forEach { _, item in
-                    self.characterItems.append(CharacterItem(results: item!))
+            case .success(value: let characterList):
+                self.characterItems = characterList.results.map { result in
+                    CharacterItem(results: result!)
                 }
             case .failure(error: let error):
                 print("error = \(error.localizedDescription)")
@@ -56,11 +56,13 @@ final class HomeViewModel {
     }
     
     func viewWillAppear() {
-        
    
     }
-    func didPressButton() {
-        delegate?.showDetailView()
+    
+    func didSelectCharacterInList(at index: Int) {
+        guard !self.characterItems.isEmpty, index < self.characterItems.count else { return }
+        let item = self.characterItems[index]
+        self.delegate?.didSelectCharacter(item: item)
     }
     
 }

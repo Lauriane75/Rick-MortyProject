@@ -40,15 +40,19 @@ extension HomeViewCoordinator: CoordinatorProtocol {
         navigationController.pushViewController(viewController, animated: false)
     }
     
-    private func createDetailView() {
-   
+    private func createDetailView(characterItem: CharacterItem) {
+        let viewController = screens.createDetailViewController(delegate: self, characterItem: characterItem)
+        navigationController.pushViewController(viewController, animated: false)
     }
 }
 
 extension HomeViewCoordinator: HomeViewModelDelegate {
-    func showDetailView() {
-        createDetailView()
+    func didSelectCharacter(item: CharacterItem) {
+        createDetailView(characterItem: item)
     }
 }
 
+extension HomeViewCoordinator: DetailViewModelDelegate {
+   
+}
 
