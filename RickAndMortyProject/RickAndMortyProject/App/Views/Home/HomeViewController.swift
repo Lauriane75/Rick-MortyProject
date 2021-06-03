@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     // MARK: - Outlets
     
     var stackView = UIStackView()
-        
+    
     private let titleLabel: CustomLabel
     
     private let collectionView: CustomCollectionView
@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
         self.collectionView = CustomCollectionView(frame: .zero, collectionViewLayout: HomeViewController.createLayout())
         
         stackView.addArrangedSubview(titleLabel)
-
+        
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -76,7 +76,10 @@ class HomeViewController: UIViewController {
             for _ in 0..<10 {
                 images.append(text)
             }
-            self.homeCollectionViewDataSource.update(with: images)
+        }
+        viewModel.visiblecharacterItem = { [weak self] characterItem in
+            guard let self = self else { return }
+            self.homeCollectionViewDataSource.update(with: characterItem)
             self.collectionView.reloadData()
         }
     }
@@ -84,7 +87,7 @@ class HomeViewController: UIViewController {
     fileprivate func setElementaddSubview() {
         view.addSubview(titleLabel)
         view.addSubview(collectionView)
-
+        
     }
     
     fileprivate func createElementsConstraints() {
@@ -93,7 +96,7 @@ class HomeViewController: UIViewController {
         self.titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         self.titleLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         self.titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
-
+        
     }
     
     static func createLayout() -> UICollectionViewCompositionalLayout {
@@ -116,7 +119,7 @@ class HomeViewController: UIViewController {
             )
         )
         verticalStackItem.contentInsets = NSDirectionalEdgeInsets(
-        top: 2, leading: 2, bottom: 2, trailing: 2)
+            top: 2, leading: 2, bottom: 2, trailing: 2)
         
         let verticalStackGroup = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(
@@ -146,7 +149,7 @@ class HomeViewController: UIViewController {
             ),
             subitems: [
                 item,
-            verticalStackGroup
+                verticalStackGroup
             ]
         )
         

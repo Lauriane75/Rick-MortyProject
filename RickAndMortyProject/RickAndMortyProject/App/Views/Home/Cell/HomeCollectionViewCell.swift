@@ -23,7 +23,6 @@ final class HomeCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
-
     }
     
     required init?(coder: NSCoder) {
@@ -32,13 +31,11 @@ final class HomeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configure
     
-    func configure(with visibleImage: String) {
-        imageView.loadImage(url: URL(string: visibleImage)!)
+    func configure(with visibleCharacterItem: CharacterItem) {
+        guard let image = visibleCharacterItem.image else { return }
+        guard let url = URL(string: image) else { return }
+        imageView.loadImage(url: url)
     }
-    
-//    func configure(with visibleCharacterItem: CharacterItem) {
-//
-//    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
