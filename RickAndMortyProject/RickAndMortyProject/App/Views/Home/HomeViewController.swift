@@ -12,9 +12,7 @@ class HomeViewController: UIViewController {
     // MARK: - Outlets
     
     var stackView = UIStackView()
-    
-    private let titleLabel: CustomLabel
-    
+        
     private let collectionView: CustomCollectionView
     
     // MARK: - Properties
@@ -26,11 +24,8 @@ class HomeViewController: UIViewController {
     // MARK: - View life cycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.titleLabel = CustomLabel(color: .black, textFont: Constant.font.font16)
         self.collectionView = CustomCollectionView(frame: .zero, collectionViewLayout: HomeViewController.createLayout())
-        
-        stackView.addArrangedSubview(titleLabel)
-        
+                
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -70,14 +65,6 @@ class HomeViewController: UIViewController {
     // MARK: - Private Functions
     
     fileprivate func bind(to viewModel: HomeViewModel) {
-        viewModel.labelText = { [weak self] text in
-            guard let self = self else { return }
-            self.titleLabel.text = text
-            var images: [String] = []
-            for _ in 0..<10 {
-                images.append(text)
-            }
-        }
         viewModel.visiblecharacterItem = { [weak self] characterItem in
             guard let self = self else { return }
             self.homeCollectionViewDataSource.update(with: characterItem)
@@ -86,17 +73,12 @@ class HomeViewController: UIViewController {
     }
     
     fileprivate func setElementaddSubview() {
-        view.addSubview(titleLabel)
         view.addSubview(collectionView)
         
     }
     
     fileprivate func createElementsConstraints() {
-        // MARK: - titleLabel
-        self.titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
-        self.titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        self.titleLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
-        self.titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+       
         
     }
     

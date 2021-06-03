@@ -34,9 +34,7 @@ final class HomeViewModel {
     }
     
     // MARK: - Output
-    
-    var labelText: ((String) -> Void)?
-    
+        
     var visiblecharacterItem: (([CharacterItem]) -> Void)?
     
     // MARK: - Input
@@ -58,9 +56,9 @@ final class HomeViewModel {
     }
     
     func viewWillAppear() {
-        
    
     }
+    
     func didPressButton() {
         delegate?.showDetailView()
     }
