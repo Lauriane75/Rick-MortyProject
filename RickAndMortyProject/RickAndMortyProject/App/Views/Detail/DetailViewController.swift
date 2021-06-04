@@ -15,6 +15,9 @@ class DetailViewController: UIViewController {
     
     let nameLabel: CustomLabel
     
+    let characterImageView: UIImageView
+
+    
     // MARK: - Properties
     
     var viewModel: DetailViewModel!
@@ -25,7 +28,10 @@ class DetailViewController: UIViewController {
         
         nameLabel = CustomLabel(color: .white, textFont: Constant.font.font16)
         
+        characterImageView = UIImageView()
+        
         stackView.addArrangedSubview(nameLabel)
+        stackView.addArrangedSubview(characterImageView)
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -56,20 +62,29 @@ class DetailViewController: UIViewController {
     
     fileprivate func bind(to viewModel: DetailViewModel) {
         viewModel.visibleCharacterItem = { [weak self] item in
+            guard let url = URL(string: item.image!) else { return }
             self?.nameLabel.text = item.name
+            self?.characterImageView.loadImage(url: url)
         }
     }
     
     fileprivate func setElementaddSubview() {
         view.addSubview(nameLabel)
+        view.addSubview(characterImageView)
     }
     
     fileprivate func createElementsConstraints() {
         // MARK: - nameLabel constraint
-        nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
         nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nameLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        
+        // MARK: - characterImageView constraint
+        characterImageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
+        characterImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        characterImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4).isActive = true
+        characterImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
     }
 
 }
